@@ -39,7 +39,6 @@ public class RedisTest {
         System.out.println(user.toString());
 
         redisUtil.set("ytt",GsonUtil.getGson().toJson(user),0);
-
     }
 
     @Test
