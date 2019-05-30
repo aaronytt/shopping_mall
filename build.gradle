@@ -1,0 +1,267 @@
+//plugins {
+//    id 'groovy'
+//    id 'java'
+//    id 'org.jetbrains.kotlin.jvm' version '1.3.21'
+//}
+
+group 'com.ytt'
+version '1.0.0-SNAPSHOT'
+
+//sourceCompatibility = 1.8
+
+//repositories {
+//    mavenCentral()
+//}
+//
+//dependencies {
+//    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+//}
+//
+//compileKotlin {
+//    kotlinOptions.jvmTarget = "1.8"
+//}
+//compileTestKotlin {
+//    kotlinOptions.jvmTarget = "1.8"
+//}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+//	apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.ytt'
+    version = '0.0.1-SNAPSHOT'
+    //jvm(java虚拟机版本号)第一个是你项目使用的jdk版本 第二个是你项目运行的jdk版本
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    //指定编码格式
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    configurations {
+        compile
+        // remove default logger
+        all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
+
+subprojects {
+    ext {
+        //版本号定义
+        springBootVersion = '2.1.4.RELEASE'
+    }
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        testCompile(
+                'org.springframework.boot:spring-boot-starter-test',
+                "junit:junit:4.12"
+        )
+        compileOnly(
+                'org.projectlombok:lombok'
+        )
+        runtimeOnly(
+                'org.springframework.boot:spring-boot-devtools'
+        )
+        annotationProcessor(
+                'org.springframework.boot:spring-boot-configuration-processor',
+                'org.projectlombok:lombok'
+        )
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+
+        all*.exclude module: 'commons-logging'
+    }
+}
+
+//定义子项目core的配置
+project(':core') {
+    dependencies {
+        compile(
+                'org.springframework.boot:spring-boot-starter-validation',
+                'org.springframework.boot:spring-boot-starter-aop',
+                'org.springframework.boot:spring-boot-devtools',
+                'org.springframework.boot:spring-boot-starter-log4j2',
+                'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml',
+
+                'com.google.code.gson:gson',
+
+                'javax.validation:validation-api',
+                // https://mvnrepository.com/artifact/org.joda/joda-money
+                'org.joda:joda-money:1.0.1',
+                // https://mvnrepository.com/artifact/org.jadira.usertype/usertype.core
+                'org.jadira.usertype:usertype.core:7.0.0.CR1',
+        )
+
+    }
+
+}
+
+//定义子项目model的配置
+project(':model') {
+    dependencies {
+        compile(
+                project(":core"),
+        )
+    }
+}
+
+//定义子项目jpa的配置
+project(':jpa') {
+    dependencies {
+        compile(
+                'org.springframework.boot:spring-boot-starter-data-jpa',
+                'org.springframework.boot:spring-boot-starter-jdbc',
+                'mysql:mysql-connector-java',
+                'com.zaxxer:HikariCP',
+        )
+    }
+
+}
+
+//定义子项目redis的配置
+project(':redis') {
+    dependencies {
+        compile(
+                project(":model"),
+                'redis.clients:jedis:3.1.0-m1',
+        )
+    }
+
+}
+
+//定义子项目api的配置
+project(':api') {
+    dependencies {
+        compile(
+                project(":model")
+        )
+    }
+
+}
+
+//定义子项目service的配置
+project(':server') {
+    dependencies {
+        //service依赖于dao
+        compile (
+                project(":jpa"),
+                project(":api")
+        )
+    }
+
+}
+
+project(':web') {
+    apply plugin: "war"
+    dependencies {
+        //web依赖于server
+        compile(
+                project(":server"),
+                'org.springframework.boot:spring-boot-starter-web'
+        )
+
+        providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+//        providedCompile(
+//                "javax.servlet:javax.servlet-api:3.1.0",
+//                "javax.servlet.jsp:jsp-api:2.2.1-b03",
+//                "javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1"
+//        )
+    }
+//	processResources{
+//		/* 从'$projectDir/src/main/java'目录下复制文件到'WEB-INF/classes'目录下覆盖原有同名文件*/
+//		from("$projectDir/src/main/java")
+//	}
+//
+//	/*自定义任务用于将当前子项目的java类打成jar包,此jar包不包含resources下的文件*/
+//	def jarArchiveName="${project.name}-${version}.jar"
+//	task jarWithoutResources(type: Jar) {
+//		from sourceSets.main.output.classesDir
+//		archiveName jarArchiveName
+//	}
+//
+//	/*重写war任务:*/
+//	war {
+//		dependsOn jarWithoutResources
+//		/* classpath排除sourceSets.main.output.classesDir目录,加入jarWithoutResources打出来的jar包 */
+//		classpath = classpath.minus(files(sourceSets.main.output.classesDir)).plus(files("$buildDir/$libsDirName/$jarArchiveName"))
+//	}
+//	/*打印编译运行类路径*/
+//	task jarPath << {
+//		println configurations.compile.asPath
+//	}
+}
+/*从子项目拷贝War任务生成的压缩包到根项目的build/explodedDist目录*/
+//task explodedDist(type: Copy) {
+//	into "$buildDir/explodedDist"
+//	subprojects {
+//		from tasks.withType(War)
+//	}
+//}
+
+
+//plugins {
+//	id 'org.springframework.boot' version '2.1.4.RELEASE'
+//	id 'java'
+//}
+//
+//apply plugin: 'io.spring.dependency-management'
+//
+//group = 'com.ytt'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '1.8'
+//
+//configurations {
+//	compileOnly {
+//		extendsFrom annotationProcessor
+//	}
+//}
+//
+//repositories {
+//	mavenCentral()
+//}
+//
+//dependencies {
+//	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+//	implementation 'org.springframework.boot:spring-boot-starter-aop'*
+//	implementation 'org.springframework.boot:spring-boot-starter-cache'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'*
+//	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'*
+//	implementation 'org.springframework.boot:spring-boot-starter-mail'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-validation'*
+//	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	implementation 'org.apache.kafka:kafka-streams'
+//	implementation 'org.springframework.kafka:spring-kafka'
+//	implementation 'org.springframework.retry:spring-retry'
+//	implementation 'org.springframework.session:spring-session-data-redis'
+//	implementation 'org.springframework.session:spring-session-jdbc'
+//	compileOnly 'org.projectlombok:lombok'*
+//	runtimeOnly 'org.springframework.boot:spring-boot-devtools'*
+//	runtimeOnly 'mysql:mysql-connector-java'*
+//	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'*
+//	annotationProcessor 'org.projectlombok:lombok'*
+//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//	testImplementation 'org.springframework.kafka:spring-kafka-test'
+//	testImplementation 'org.springframework.security:spring-security-test'
+//}
