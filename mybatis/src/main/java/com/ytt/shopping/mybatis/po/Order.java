@@ -1,8 +1,7 @@
-package com.ytt.shopping.jpa.model;
+package com.ytt.shopping.mybatis.po;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -11,8 +10,6 @@ import java.util.List;
  * @Date: 18:14 2019/4/26
  * @Modiflid By:
  */
-@Entity
-@Table(name = "order")
 @Builder
 @Data
 @ToString(callSuper = true)
@@ -20,13 +17,12 @@ import java.util.List;
 @AllArgsConstructor
 public class Order extends BaseEntity {
 
+    private Long customerId;
+
     private String customer;
 
-    @ManyToMany
-    @JoinTable(name = "goods")
-    private List<Goods> goodsList;
-
-    @Column(nullable = false)
     private OrderState state;
+
+    private List<Goods> goodsList;
 
 }

@@ -100,6 +100,7 @@ subprojects {
 project(':core') {
     dependencies {
         compile(
+                'org.springframework.boot:spring-boot-starter-cache',
                 'org.springframework.boot:spring-boot-starter-validation',
                 'org.springframework.boot:spring-boot-starter-aop',
                 'org.springframework.boot:spring-boot-devtools',
@@ -141,11 +142,25 @@ project(':jpa') {
 
 }
 
+//定义子项目mybatis的配置
+project(':mybatis') {
+    dependencies {
+        compile(
+                project(':core'),
+                'org.springframework.boot:spring-boot-starter-jdbc',
+                'mysql:mysql-connector-java',
+                'com.zaxxer:HikariCP',
+                'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0',
+        )
+    }
+
+}
+
 //定义子项目redis的配置
 project(':redis') {
     dependencies {
         compile(
-                project(":model"),
+                project(':model'),
                 'redis.clients:jedis:3.1.0-m1',
         )
     }
@@ -156,19 +171,21 @@ project(':redis') {
 project(':api') {
     dependencies {
         compile(
-                project(":model")
+                project(":model"),
+//                project(":jpa"),
+                project(':mybatis'),
+                project(':redis'),
         )
     }
 
 }
 
-//定义子项目service的配置
+//定义子项目server 的配置
 project(':server') {
     dependencies {
         //service依赖于dao
         compile (
-                project(":jpa"),
-                project(":api")
+                project(":api"),
         )
     }
 

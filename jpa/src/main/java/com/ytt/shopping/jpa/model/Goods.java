@@ -13,7 +13,7 @@ import javax.persistence.*;
  * @Modiflid By:
  */
 @Entity
-@Table(name = "T_MENU")
+@Table(name = "goods")
 @Builder
 @Data
 @ToString(callSuper = true)

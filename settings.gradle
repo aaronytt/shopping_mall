@@ -6,4 +6,5 @@ include 'api'
 include 'server'
 include 'web'
 include 'redis'
+include 'mybatis'
 

@@ -1,8 +1,7 @@
 package com.ytt.shopping.redis.test;
 
-import com.google.gson.Gson;
 import com.ytt.shopping.core.GsonUtil;
-import com.ytt.shopping.model.User;
+import com.ytt.shopping.model.dto.User;
 import com.ytt.shopping.redis.RedisApplication;
 import com.ytt.shopping.redis.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
