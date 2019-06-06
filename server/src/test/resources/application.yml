@@ -57,6 +57,12 @@ spring:
         #redis配置结束
     block-when-exhausted: true
 
+  cache:
+    type: redis
+    redis:
+      time-to-live: 10000
+      cache-null-values: false
+
 mybatis:
   #  typeAliasesPackage: com.ytt
   mapper-locations: classpath*:mapper/*.xml

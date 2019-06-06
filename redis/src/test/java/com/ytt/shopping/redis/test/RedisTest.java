@@ -48,4 +48,13 @@ public class RedisTest {
         System.out.println("gson parse:  " + user);
     }
 
+    @Test
+    public void testDel(){
+        redisUtil.del(0,"ytt");
+        String userStr = redisUtil.get("ytt",0);
+        System.out.println("redis return:  " + userStr);
+        User user = GsonUtil.getGson().fromJson(userStr,User.class);
+        System.out.println("gson parse:  " + user);
+    }
+
 }

@@ -150,7 +150,7 @@ project(':mybatis') {
                 'org.springframework.boot:spring-boot-starter-jdbc',
                 'mysql:mysql-connector-java',
                 'com.zaxxer:HikariCP',
-                'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0',
+                'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1',
         )
     }
 
@@ -162,6 +162,7 @@ project(':redis') {
         compile(
                 project(':model'),
                 'redis.clients:jedis:3.1.0-m1',
+                'org.springframework.boot:spring-boot-starter-data-redis',
         )
     }
 

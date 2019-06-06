@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
  * @Date: 17:41 2019/5/30
  * @Modiflid By:
  */
-@EnableCaching
+@EnableCaching(proxyTargetClass = true)
 @SpringBootApplication
 @MapperScan("com.ytt.shopping.mybatis.mapper")
 public class ServerApplication {
