@@ -67,12 +67,5 @@ mybatis:
   #  typeAliasesPackage: com.ytt
   mapper-locations: classpath*:mapper/*.xml
 
-#  cache:
-#    type: redis
-##    cache-names:
-#    redis:
-#      time-to-live: 5000
-#      cache-null-values: true
-
 
 
