@@ -1,4 +1,4 @@
-package com.ytt.shopping.core;
+package com.ytt.shopping.core.util;
 
 import com.google.gson.Gson;
 

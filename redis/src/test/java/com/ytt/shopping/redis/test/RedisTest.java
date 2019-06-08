@@ -1,6 +1,6 @@
 package com.ytt.shopping.redis.test;
 
-import com.ytt.shopping.core.GsonUtil;
+import com.ytt.shopping.core.util.GsonUtil;
 import com.ytt.shopping.model.dto.User;
 import com.ytt.shopping.redis.RedisApplication;
 import com.ytt.shopping.redis.util.RedisUtil;
