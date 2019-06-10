@@ -14,26 +14,26 @@ import java.util.List;
  * @Modiflid By:
  */
 @Data
-public class BianaryTree<T> extends TreeNode<T> {
+public class BinaryTree<T> extends TreeNode<T> {
 
     private int index;
 
-    public BianaryTree() {
+    public BinaryTree() {
         super();
     }
 
-    public BianaryTree(int index) {
+    public BinaryTree(int index) {
         this.index = index;
     }
 
-    public BianaryTree(T data) {
+    public BinaryTree(T data) {
         super(data);
     }
 
     public final static int BREADTH = 0;
     public final static int DEPTH = 1;
 
-    public BianaryTree(List<T> src,int level) {
+    public BinaryTree(List<T> src, int level) {
         if(level == BREADTH){
             createBinaryTreeBreadth(src);
         } else if(level == DEPTH){
@@ -62,7 +62,7 @@ public class BianaryTree<T> extends TreeNode<T> {
         nodes = src.parallelStream()
                 .skip(1)
                 .map(e -> {
-                    return null == e ? null : new BianaryTree<T>(e);
+                    return null == e ? null : new BinaryTree<T>(e);
                 })
                 .collect(ArrayList<TreeNode<T>>::new,
                          ArrayList<TreeNode<T>>::add,
@@ -78,7 +78,7 @@ public class BianaryTree<T> extends TreeNode<T> {
         //{0,1,3,null,null,4,null,null,2,5,null,null,6,null,null,}
         for (int i = 1; i < nodes.size(); i++) {
             //当前标记节点
-            BianaryTree<T> markNode = (BianaryTree<T>)nodes.get(i);
+            BinaryTree<T> markNode = (BinaryTree<T>)nodes.get(i);
             //准备写入父节点左孩子
             if(leftOrRight){
                 //当前节点不空，可以写入父节点左孩子
@@ -148,11 +148,11 @@ public class BianaryTree<T> extends TreeNode<T> {
                         return null;
                     }
                     int i = src.indexOf(e);
-                    BianaryTree<T> markNode = null;
+                    BinaryTree<T> markNode = null;
                     if(FRIST == i){
                         markNode = this;
                     }else {
-                        markNode = new BianaryTree<>();
+                        markNode = new BinaryTree<>();
                     }
                     markNode.setIndex(i);
                     markNode.setData(src.get(i));
@@ -164,24 +164,19 @@ public class BianaryTree<T> extends TreeNode<T> {
 
         nodes.parallelStream()
                 .forEach(markNode ->{
-                    if(null == markNode || FRIST == ((BianaryTree)markNode).getIndex()){
+
+                    if(null == markNode || FRIST == ((BinaryTree)markNode).getIndex()){
                         return;
                     }
 
-                    int i = ((BianaryTree<Object>) markNode).getIndex();
-                    //找父节点在集合的指针
-                    //求以2为底，i 的 指数
-                    int power = (int)(Math.log(i)/Math.log(2));
-                    //父节点指针 最近的 2的N次方 位置  : N=power-1
-                    int index_2powerN = (int)Math.pow(2,power)-1;
-                    //最近 2的n次方 位置的偏移量
-                    int offset = (i-(int)Math.pow(2,power+1))/2;
+                    int i = ((BinaryTree<Object>) markNode).getIndex();
+
                     //位置
-                    int parentIndex =  index_2powerN + offset;
+                    int parentIndex = ((i+1) >> 1) -1;
 
                     TreeNode<T> parentNode = nodes.get(parentIndex);
 
-                    if(null == parentNode && FRIST != ((BianaryTree)markNode).getIndex()){
+                    if(null == parentNode && FRIST != ((BinaryTree)markNode).getIndex()){
                         throw new FormatNoMatchException();
                     }
                     //写入左孩子还是右孩子
@@ -200,7 +195,7 @@ public class BianaryTree<T> extends TreeNode<T> {
 
     @Override
     public String toString() {
-        return "BianaryTree{" +
+        return "BinaryTree{" +
                 "index=" + index +
                 ", data=" + super.getData() +
                 "," + (null != super.getLeftChild() ? "\n" : "") + " leftChild=" + super.getLeftChild() +
