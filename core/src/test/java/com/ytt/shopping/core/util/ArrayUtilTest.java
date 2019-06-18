@@ -26,7 +26,7 @@ public class ArrayUtilTest {
         try {
             pool = Executors.newFixedThreadPool(16);
 
-            final Integer[] array = createArray(10,-100000,100000);
+            final Integer[] array = createRandomArray(10,-100000,100000);
 
             System.out.println(Arrays.toString(array));
             System.out.println();
@@ -59,9 +59,9 @@ public class ArrayUtilTest {
 //
 //            //快输排序
 //            // 递归
-            pool.submit(()->{
-                quickSortDoubleRecursive(copyArray(array),(Integer fisrt , Integer second) -> fisrt - second);
-            });
+//            pool.submit(()->{
+//                quickSortDoubleRecursive(copyArray(array),(Integer fisrt , Integer second) -> fisrt - second);
+//            });
 //
 //            pool.submit(()->{
 //                quickSortSingleRecursive(copyArray(array),(Integer fisrt , Integer second) -> fisrt - second);

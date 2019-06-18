@@ -1,5 +1,6 @@
 package com.ytt.shopping.core.tree;
 
+import com.ytt.shopping.core.object.Empty;
 import lombok.Data;
 
 /**
@@ -9,7 +10,7 @@ import lombok.Data;
  * @Modiflid By:
  */
 @Data
-public class TreeNode<T> {
+public class TreeNode<T> implements Empty {
 
     private T data;
 
@@ -18,7 +19,6 @@ public class TreeNode<T> {
     private TreeNode<T> parent;
 
     public TreeNode() {
-
     }
 
     public TreeNode(T data) {
@@ -32,5 +32,10 @@ public class TreeNode<T> {
                 ", leftChild=" + leftChild +
                 ", rightChild=" + rightChild +
                 "\n";
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return null == parent && null == leftChild && null == rightChild;
     }
 }

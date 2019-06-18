@@ -22,7 +22,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void subbleSort(T[] array, Comparator<T> comparator){
-
         long stratTime = System.nanoTime();
 
         //比较执行次数
@@ -49,7 +48,6 @@ public class ArrayUtil {
                 + ", changeCounter: "+ changeCounter
                 + ", time: " + PrintUtil.textCode((endTime - stratTime)+"", PrintUtil.RED)
                 + ", \n result: " + Arrays.toString(array));
-
     }
 
     /**
@@ -59,7 +57,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void subbleSorted(T[] array, Comparator<T> comparator){
-
         long stratTime = System.nanoTime();
 
         //比较执行次数
@@ -91,7 +88,6 @@ public class ArrayUtil {
                 + ", changeCounter: "+ changeCounter
                 + ", time: " + PrintUtil.textCode((endTime - stratTime)+"", PrintUtil.RED)
                 + ", \n result: " + Arrays.toString(array));
-
     }
 
     /**
@@ -101,7 +97,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void subbleSortBorder(T[] array, Comparator<T> comparator){
-
         long stratTime = System.nanoTime();
 
         //比较执行次数
@@ -138,7 +133,6 @@ public class ArrayUtil {
                 + ", changeCounter: "+ changeCounter
                 + ", time: " + PrintUtil.textCode((endTime - stratTime)+"", PrintUtil.RED)
                 + ", \n result: " + Arrays.toString(array));
-
     }
 
     /**
@@ -148,7 +142,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void cocktailSort(T[] array, Comparator<T> comparator){
-
         long stratTime = System.nanoTime();
 
         //比较执行次数
@@ -182,7 +175,6 @@ public class ArrayUtil {
                 + ", changeCounter: "+ changeCounter
                 + ", time: " + PrintUtil.textCode((endTime - stratTime)+"", PrintUtil.RED)
                 + ", \n result: " + Arrays.toString(array));
-
     }
 
     /**
@@ -192,7 +184,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void cocktailSorted(T[] array, Comparator<T> comparator){
-
         long stratTime = System.nanoTime();
 
         //比较执行次数
@@ -238,7 +229,6 @@ public class ArrayUtil {
                 + ", changeCounter: "+ changeCounter
                 + ", time: " + PrintUtil.textCode((endTime - stratTime)+"", PrintUtil.RED)
                 + ", \n result: " + Arrays.toString(array));
-
     }
 
     /**
@@ -248,7 +238,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void cocktailSortBorder(T[] array, Comparator<T> comparator){
-
         long stratTime = System.nanoTime();
 
         //比较执行次数
@@ -304,7 +293,6 @@ public class ArrayUtil {
                 + ", changeCounter: "+ changeCounter
                 + ", time: " + PrintUtil.textCode((endTime - stratTime)+"", PrintUtil.RED)
                 + ", \n result: " + Arrays.toString(array));
-
     }
 
     /**
@@ -327,7 +315,6 @@ public class ArrayUtil {
         System.out.println("method: "+ PrintUtil.textCode(Thread.currentThread().getStackTrace()[1].getMethodName(), PrintUtil.RED, PrintUtil.BOLD)
                 + ", time: " + PrintUtil.textCode((endTime - stratTime)+"", PrintUtil.RED)
                 + ", \n result: " + Arrays.toString(array));
-
     }
 
     /**
@@ -362,7 +349,6 @@ public class ArrayUtil {
      */
     @Deprecated
     public static <T> void quickSortRecursive(T[] array, int startIndex, int endIndex, Comparator<T> comparator, boolean singleOrDouble){
-
         if(startIndex >= endIndex){
             return;
         }
@@ -371,7 +357,6 @@ public class ArrayUtil {
 
         quickSortRecursive(array, startIndex, pivotIndex-1, comparator, true);
         quickSortRecursive(array, pivotIndex+1, array.length-1, comparator, true);
-
     }
 
     /**
@@ -381,7 +366,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void quickSortDoubleStack(T[] array, Comparator<T> comparator){
-
         long stratTime = System.nanoTime();
 
         quickSortStack(array, 0, array.length-1, comparator, true);
@@ -393,7 +377,6 @@ public class ArrayUtil {
         System.out.println("method: "+ PrintUtil.textCode(Thread.currentThread().getStackTrace()[1].getMethodName(), PrintUtil.RED, PrintUtil.BOLD)
                 + ", time: " + PrintUtil.textCode((endTime - stratTime)+"", PrintUtil.RED)
                 + ", \n result: " + Arrays.toString(array));
-
     }
 
     /**
@@ -403,7 +386,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void quickSortSingleStack(T[] array, Comparator<T> comparator){
-
         long stratTime = System.nanoTime();
 
         quickSortStack(array,0, array.length-1, comparator, false);
@@ -427,7 +409,6 @@ public class ArrayUtil {
      * @param <T>
      */
     public static <T> void quickSortStack(T[] array, final int startIndex, final int endIndex, Comparator<T> comparator, boolean singleOrDouble){
-
         Stack<Map<String, Integer>> quickSortStack = new Stack<>();
 
         //数列的起止下标，入栈
@@ -449,7 +430,6 @@ public class ArrayUtil {
                 quickSortStackPushMap(quickSortStack, pivotIndex+1, _endIndex);
             }
         }
-
     }
 
     private static void quickSortStackPushMap(Stack<Map<String,Integer>> quickSortStack,final int startIndex, final int endIndex){
@@ -469,7 +449,6 @@ public class ArrayUtil {
      * @return
      */
     private static <T> int partitionDouble(T[] array, int startIndex, int endIndex, Comparator<T> comparator){
-
         //三数取中
         int pivotIndex = (endIndex-startIndex)/2 + startIndex;
         exchangeValue(array, startIndex, pivotIndex);
@@ -489,7 +468,6 @@ public class ArrayUtil {
         }
         exchangeValue(array, pivotIndex, left);
         return left;
-
     }
 
     /**
@@ -518,7 +496,6 @@ public class ArrayUtil {
         exchangeValue(array, pivotIndex, mark);
 
         return mark;
-
     }
 
     /**
@@ -565,7 +542,7 @@ public class ArrayUtil {
      * @param end
      * @return
      */
-    public static Integer[] createArray(int length,int start ,int end) {
+    public static Integer[] createRandomArray(int length,int start ,int end) {
         return new Random().ints(start,end).parallel().distinct().limit(length).boxed().toArray(Integer[]::new);
     }
 
