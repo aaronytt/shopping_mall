@@ -1,16 +1,16 @@
 package com.ytt.shopping.api;
 
-import com.ytt.shopping.mybatis.po.User;
+import com.ytt.shopping.model.dto.UserDTO;
 
 public interface UserService {
 
-    User save(User user);
+    UserDTO save(UserDTO user);
 
-    User get(User user);
+    UserDTO get(UserDTO user);
 
-    User getById(Long id);
+    UserDTO getById(Long id);
 
-    int update(User user);
+    int update(UserDTO user);
 
     void delete(Long id);
 

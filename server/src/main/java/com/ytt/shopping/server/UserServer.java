@@ -1,8 +1,11 @@
 package com.ytt.shopping.server;
 
 import com.ytt.shopping.api.UserService;
+import com.ytt.shopping.model.dto.UserDTO;
+import com.ytt.shopping.model.po.UserPO;
 import com.ytt.shopping.mybatis.mapper.UserMapper;
-import com.ytt.shopping.mybatis.po.User;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
  * @Modiflid By:
  */
 @Service
+@Slf4j
 public class UserServer implements UserService {
 
     //这里的单引号不能少，否则会报错，被识别是一个对象
@@ -27,32 +31,36 @@ public class UserServer implements UserService {
 
     @Override
     @CacheEvict(value = CACHE_NAME,key = CACHE_KEY)
-    public User save(User user) {
+    public UserDTO save(UserDTO user) {
         Long id = userMapper.insert(user);
         user.setId(id);
         return user;
     }
 
-    @Cacheable(value = CACHE_NAME,key = CACHE_KEY + " + #user.getId()")
+    @Cacheable(value = CACHE_NAME,key = CACHE_KEY + " + #user.toString()")
     @Override
-    public User get(User user) {
-        User u = userMapper.selectOne(user);
-        return u ;
+    public UserDTO get(UserDTO user) {
+        UserPO userPO = userMapper.selectOne(user);
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(userPO,userDTO);
+        return userDTO ;
     }
 
     @Cacheable(value = CACHE_NAME,key = CACHE_KEY + " + #id")
     @Override
-    public User getById(Long id) {
+    public UserDTO getById(Long id) {
         System.out.println("没有走缓存");
-        User user = new User();
+        UserDTO user = new UserDTO();
         user.setId(id);
-        User u = userMapper.selectOne(user);
-        return u ;
+        UserPO userPO = userMapper.selectOne(user);
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(userPO,userDTO);
+        return userDTO ;
     }
 
     @CachePut(value = CACHE_NAME,key = CACHE_KEY + " + #user.getId()")
     @Override
-    public int update(User user) {
+    public int update(UserDTO user) {
         System.out.println(">>>>>>我在ytt刷脸了，好开心啊");
         /**
          * 待续

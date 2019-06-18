@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ytt.shopping.mybatis.mapper.UserMapper">
 
-    <resultMap id="userMap" type="com.ytt.shopping.mybatis.po.User">
+    <resultMap id="userMap" type="com.ytt.shopping.model.po.UserPO">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="username" jdbcType="VARCHAR" property="username" javaType="java.lang.String" />
         <result column="password" jdbcType="VARCHAR" property="password" javaType="java.lang.String"/>
@@ -35,7 +35,7 @@
         </if>
     </sql>
 
-    <insert id="insert" parameterType="com.ytt.shopping.mybatis.po.User">
+    <insert id="insert" parameterType="com.ytt.shopping.model.po.UserPO">
         <!-- 插入返回插入记录的主键id
         keyProperty		===>	映射到数据库的主键为当前pojo的哪个字段
         resultType		===>	字段的类型

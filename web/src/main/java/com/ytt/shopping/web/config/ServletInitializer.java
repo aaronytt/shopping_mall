@@ -1,0 +1,14 @@
+package com.ytt.shopping.web.config;
+
+import com.ytt.shopping.web.ShoppingMallWebApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+public class ServletInitializer extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(ShoppingMallWebApplication.class);
+    }
+
+}

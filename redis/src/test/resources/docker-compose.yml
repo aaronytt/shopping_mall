@@ -1,89 +1,89 @@
 #  docker run --rm -it inem0o/redis-trib create --replicas 1 localhost:6379 localhost:6380 localhost:6381 localhost:6382 localhost:6383 localhost:6384
 
 
-version: '3'
-
-services:
-  redis-m1:
-    build: ./
-#    restart: always
-    volumes:
-      - /data/redis/6379/data:/data
-    environment:
-      - REDIS_PORT=6379
-#    networks:
-#      redis-master:
-#        ipv4_address: 10.0.75.2
-    ports:
-      - '6379:6379'       #服务端口
-      - '16379:16379'   #集群端口
-
-  redis-m2:
-    build: ./
-#    restart: always
-    volumes:
-      - /data/redis/6380/data:/data
-    environment:
-      - REDIS_PORT=6380
-#    networks:
-#      redis-master:
-#        ipv4_address: 10.0.75.3
-    ports:
-      - '6380:6380'
-      - '16380:16380'
-
-  redis-m3:
-    build: ./
-#    restart: always
-    volumes:
-      - /data/redis/6381/data:/data
-    environment:
-      - REDIS_PORT=6381
-#    networks:
-#      redis-master:
-#        ipv4_address: 10.0.75.4
-    ports:
-      - '6381:6381'
-      - '16381:16381'
-
-  redis-s4:
-    build: ./
-#    restart: always
-    volumes:
-      - /data/redis/6382/data:/data
-    environment:
-      - REDIS_PORT=6382
-#    networks:
-#      redis-salve:
-#        ipv4_address: 10.0.75.5
-    ports:
-      - '6382:6382'
-      - '16382:16382'
-
-  redis-s5:
-    build: ./
-#    restart: always
-    volumes:
-      - /data/redis/6383/data:/data
-    environment:
-      - REDIS_PORT=6383
-#    networks:
-#      redis-salve:
-#        ipv4_address: 10.0.75.6
-    ports:
-      - '6383:6383'
-      - '16383:16383'
-
-  redis-s6:
-    build: ./
-#    restart: always
-    volumes:
-      - /data/redis/6384/data:/data
-    environment:
-      - REDIS_PORT=6384
-#    networks:
-#      redis-salve:
-#        ipv4_address: 10.0.75.7
-    ports:
-      - '6384:6384'
-      - '16384:16384'
+#version: '3'
+#
+#services:
+#  redis-m1:
+#    build: ./
+##    restart: always
+#    volumes:
+#      - /data/redis/6379/data:/data
+#    environment:
+#      - REDIS_PORT=6379
+##    networks:
+##      redis-master:
+##        ipv4_address: 10.0.75.2
+#    ports:
+#      - '6379:6379'       #服务端口
+#      - '16379:16379'   #集群端口
+#
+#  redis-m2:
+#    build: ./
+##    restart: always
+#    volumes:
+#      - /data/redis/6380/data:/data
+#    environment:
+#      - REDIS_PORT=6380
+##    networks:
+##      redis-master:
+##        ipv4_address: 10.0.75.3
+#    ports:
+#      - '6380:6380'
+#      - '16380:16380'
+#
+#  redis-m3:
+#    build: ./
+##    restart: always
+#    volumes:
+#      - /data/redis/6381/data:/data
+#    environment:
+#      - REDIS_PORT=6381
+##    networks:
+##      redis-master:
+##        ipv4_address: 10.0.75.4
+#    ports:
+#      - '6381:6381'
+#      - '16381:16381'
+#
+#  redis-s4:
+#    build: ./
+##    restart: always
+#    volumes:
+#      - /data/redis/6382/data:/data
+#    environment:
+#      - REDIS_PORT=6382
+##    networks:
+##      redis-salve:
+##        ipv4_address: 10.0.75.5
+#    ports:
+#      - '6382:6382'
+#      - '16382:16382'
+#
+#  redis-s5:
+#    build: ./
+##    restart: always
+#    volumes:
+#      - /data/redis/6383/data:/data
+#    environment:
+#      - REDIS_PORT=6383
+##    networks:
+##      redis-salve:
+##        ipv4_address: 10.0.75.6
+#    ports:
+#      - '6383:6383'
+#      - '16383:16383'
+#
+#  redis-s6:
+#    build: ./
+##    restart: always
+#    volumes:
+#      - /data/redis/6384/data:/data
+#    environment:
+#      - REDIS_PORT=6384
+##    networks:
+##      redis-salve:
+##        ipv4_address: 10.0.75.7
+#    ports:
+#      - '6384:6384'
+#      - '16384:16384'
