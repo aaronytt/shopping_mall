@@ -1,4 +1,4 @@
-package com.ytt.shopping.web;
+package com.ytt.shopping.web.bean;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.AfterReturning;

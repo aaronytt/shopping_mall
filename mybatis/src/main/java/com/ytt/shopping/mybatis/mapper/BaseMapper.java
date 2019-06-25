@@ -1,6 +1,7 @@
 package com.ytt.shopping.mybatis.mapper;
 
 import java.io.Serializable;
+import java.util.List;
 
 public interface BaseMapper<T,ID extends Serializable> {
 
@@ -12,7 +13,7 @@ public interface BaseMapper<T,ID extends Serializable> {
 
     T selectByPrimaryKey(ID id);
 
-    T selectSelective(T record);
+    List<T> selectSelective(T record);
 
     int updateByPrimaryKeySelective(T record);
 

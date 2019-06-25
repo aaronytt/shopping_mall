@@ -8,9 +8,9 @@
 
     <aop:aspectj-autoproxy/>
 
-    <bean id="testBeanX" class="com.ytt.shopping.web.TestBean">
+    <bean id="testBeanX" class="com.ytt.shopping.web.bean.TestBean">
         <constructor-arg name="context" value="Bar" />
     </bean>
 
-    <bean id="fooAspect" class="com.ytt.shopping.web.FooAspect" />
+    <bean id="fooAspect" class="com.ytt.shopping.web.bean.FooAspect" />
 </beans>

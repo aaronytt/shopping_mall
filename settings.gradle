@@ -8,4 +8,5 @@ include 'web'
 include 'redis'
 include 'mybatis'
 include 'service'
+include 'rest'
 

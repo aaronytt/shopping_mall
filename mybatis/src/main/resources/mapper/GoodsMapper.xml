@@ -24,7 +24,7 @@
 
     <sql id="goods_allCondition">
         <if test="id != null">
-            id = #{id}
+            AND id = #{id}
         </if>
         <if test="name != null and name != ''">
             AND name= #{name}
@@ -64,6 +64,7 @@
         FROM
             goods
         WHERE
+            1=1
           <include refid="goods_allCondition"/>
     </select>
 

@@ -1,0 +1,7 @@
+server:
+  port: 8081
+  tomcat:
+    url-encoding: utf-8
+
+logging:
+  config: classpath:log4j2.yml

@@ -12,6 +12,8 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: aaron
  * @Descriotion:
@@ -40,9 +42,9 @@ public class UserServiceImpl implements UserService {
     @Cacheable(value = CACHE_NAME,key = CACHE_KEY + " + #user.toString()")
     @Override
     public UserDTO get(UserDTO user) {
-        UserPO userPO = userMapper.selectSelective(user);
+        List<UserPO> userPOList = userMapper.selectSelective(user);
         UserDTO userDTO = new UserDTO();
-        BeanUtils.copyProperties(userPO,userDTO);
+        BeanUtils.copyProperties(userPOList.get(0),userDTO);
         return userDTO ;
     }
 
@@ -50,9 +52,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO getById(long id) {
         System.out.println("没有走缓存");
-        UserDTO user = new UserDTO();
-        user.setId(id);
-        UserPO userPO = userMapper.selectSelective(user);
+        UserPO userPO = userMapper.selectByPrimaryKey(id);
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userPO,userDTO);
         return userDTO ;

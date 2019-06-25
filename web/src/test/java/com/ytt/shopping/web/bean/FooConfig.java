@@ -1,4 +1,4 @@
-package com.ytt.shopping.web;
+package com.ytt.shopping.web.bean;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

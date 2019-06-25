@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
   tomcat:
     url-encoding: utf-8
 
@@ -33,46 +33,46 @@ spring:
 #      hibernate:
 #        show_sql: true
 #        format_sql: true
-
-  #redis配置开始
-  # Redis数据库索引（默认为0）
-  redis:
-    database: 0
-  # Redis服务器地址
-    host: localhost
-  # Redis服务器连接端口
-    port: 6379
-  # Redis服务器连接密码（默认为空）
-    password: 123456
-  # 连接池最大连接数（使用负值表示没有限制）
-    jedispool:
-      max-active: 1024
-  # 连接池最大阻塞等待时间（使用负值表示没有限制）
-      max-wait: 10000
-  # 连接池中的最大空闲连接
-      max-idle: 200
-  # 连接池中的最小空闲连接
-      min-idle: 0
-  # 连接超时时间（毫秒）
-    timeout: 10000
-  #redis配置结束
-    block-when-exhausted: true
-
-  cache:
-    type: redis
-    redis:
-      time-to-live: 10000
-      cache-null-values: false
-
-#  security:
-#    basic:
-#      enabled: false
-#  management:
-#    security:
-#      enabled: false
-
-mybatis:
-  #  typeAliasesPackage: com.ytt
-  mapper-locations: classpath*:mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#
+#  #redis配置开始
+#  # Redis数据库索引（默认为0）
+#  redis:
+#    database: 0
+#  # Redis服务器地址
+#    host: localhost
+#  # Redis服务器连接端口
+#    port: 6379
+#  # Redis服务器连接密码（默认为空）
+#    password: 123456
+#  # 连接池最大连接数（使用负值表示没有限制）
+#    jedispool:
+#      max-active: 1024
+#  # 连接池最大阻塞等待时间（使用负值表示没有限制）
+#      max-wait: 10000
+#  # 连接池中的最大空闲连接
+#      max-idle: 200
+#  # 连接池中的最小空闲连接
+#      min-idle: 0
+#  # 连接超时时间（毫秒）
+#    timeout: 10000
+#  #redis配置结束
+#    block-when-exhausted: true
+#
+#  cache:
+#    type: redis
+#    redis:
+#      time-to-live: 10000
+#      cache-null-values: false
+#
+##  security:
+##    basic:
+##      enabled: false
+##  management:
+##    security:
+##      enabled: false
+#
+#mybatis:
+#  #  typeAliasesPackage: com.ytt
+#  mapper-locations: classpath*:mapper/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

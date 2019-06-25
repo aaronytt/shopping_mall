@@ -9,6 +9,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -85,6 +86,15 @@ public class GoodsController {
     @ResponseStatus(OK)
     public GoodsDTO getById(@PathVariable long id){
         return goodsService.getById(id);
+    }
+
+    @GetMapping(path = "/get")
+    @ResponseBody
+    @ResponseStatus(OK)
+    public List<GoodsDTO> getById(GoodsRequest goods){
+        GoodsDTO goodsDTO = new GoodsDTO();
+        BeanUtils.copyProperties(goods,goodsDTO);
+        return goodsService.getList(goodsDTO);
     }
 
 }

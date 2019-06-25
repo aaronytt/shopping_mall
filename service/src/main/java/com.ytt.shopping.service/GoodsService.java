@@ -3,6 +3,8 @@ package com.ytt.shopping.service;
 import com.ytt.shopping.model.dto.GoodsDTO;
 import org.joda.money.Money;
 
+import java.util.List;
+
 /**
  * @Author: aaron
  * @Descriotion:
@@ -10,9 +12,9 @@ import org.joda.money.Money;
  * @Modiflid By:
  */
 public interface GoodsService {
-
     GoodsDTO saveGoods(String name, Money price);
 
     GoodsDTO getById(long id);
 
+    List<GoodsDTO> getList(GoodsDTO goods);
 }
