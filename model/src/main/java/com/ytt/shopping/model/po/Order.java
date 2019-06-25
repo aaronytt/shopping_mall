@@ -15,11 +15,11 @@ import java.util.List;
  */
 @Builder
 @Data
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class Order extends BaseEntity implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Order extends BaseEntity<Long> implements Serializable {
 
     private Long customerId;
 
@@ -27,6 +27,6 @@ public class Order extends BaseEntity implements Serializable {
 
     private OrderState state;
 
-    private List<Goods> goodsList;
+    private List<GoodsPO> goodsList;
 
 }

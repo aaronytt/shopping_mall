@@ -2,6 +2,7 @@ package com.ytt.shopping.model.base;
 
 import lombok.*;
 
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -11,12 +12,13 @@ import java.time.LocalDateTime;
  * @Date: 20:52 2019/4/26
  * @Modiflid By:
  */
-@Getter
-@Setter
-@EqualsAndHashCode
-public class BaseEntity implements Serializable {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@MappedSuperclass
+public abstract class BaseEntity<T> implements Serializable {
 
-    private Long id;
+    private T id;
 
     private LocalDateTime createTime;
 

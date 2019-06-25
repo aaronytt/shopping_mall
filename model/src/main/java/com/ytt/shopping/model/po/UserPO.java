@@ -9,8 +9,9 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class UserPO extends BaseEntity implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class UserPO extends BaseEntity<Long> implements Serializable {
 
     private String username;
 

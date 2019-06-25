@@ -14,7 +14,7 @@ spring:
     username: 'root'
     password: '123456'
     # 使用hikari数据源
-    type: com.zaxxer.hikari.HikariDataSource
+    type: 'com.zaxxer.hikari.HikariDataSource'
     hikari:
       minimum-idle: 5
       maximum-pool-size: 15
@@ -24,14 +24,16 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 60000
       connection-test-query: 'SELECT 1'
-
 #  jpa:
-#    hibernate:
-#      ddl-auto: none
+#    show-sql: true
 #    properties:
-#      hibernate:
-#        show_sql: true
-#        format_sql: true
+#      jadira:
+#        usertype:
+#          autoRegisterUserTypes: true
+#    hibernate:
+#      ddl-auto: update
+#      generator-ddl: true
+#      open-in-view: true
 
   #redis配置开始
   # Redis数据库索引（默认为0）
@@ -69,13 +71,25 @@ spring:
 #  management:
 #    security:
 #      enabled: false
+
+  resources:
+    static-locations: 'classpath:/static/'
+    cache:
+      cachecontrol:
+        max-age: 10s
+#        no-cache: false
+#        s-max-age: 20
+
   mvc:
     view:
-      prefix: /resources/templates/
-      suffix: .html
+      prefix: '/resources/templates/'
+      suffix: '.html'
+    static-path-pattern: '/static/**'
 
 mybatis:
   #  typeAliasesPackage: com.ytt
-  mapper-locations: classpath*:mapper/*.xml
+  mapper-locations: 'classpath*:mapper/*.xml'
+  type-handlers-package: 'com.ytt.shopping.mybatis.handlers'
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: 'org.apache.ibatis.logging.stdout.StdOutImpl'
+

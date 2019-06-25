@@ -14,11 +14,11 @@ import java.io.Serializable;
  */
 @Builder
 @Data
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class Goods extends BaseEntity implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class GoodsPO extends BaseEntity<Long> implements Serializable {
 
     private String name;
 

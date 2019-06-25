@@ -28,8 +28,6 @@ import java.util.Optional;
 @Slf4j
 public class UserHttpAspect {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(UserHttpAspect.class);
-
     @Pointcut("execution( public * com.ytt.shopping.web.controller.UserController.*(..))")
     public void log(){
 

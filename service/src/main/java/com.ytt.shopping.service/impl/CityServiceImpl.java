@@ -27,9 +27,10 @@ public class CityServiceImpl implements CityService {
         if(!Optional.ofNullable(city).isPresent()){
             city = new CityDTO();
         }
-        CityPO cityPO = cityMapper.findById(city.getId());
+        CityPO cityPO = cityMapper.selectByPrimaryKey(city.getId());
         CityDTO result = new CityDTO();
         BeanUtils.copyProperties(cityPO,result);
         return result;
     }
+
 }

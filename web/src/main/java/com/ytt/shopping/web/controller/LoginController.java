@@ -18,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class LoginController {
 
-
-    private final static Logger LOG= LoggerFactory.getLogger(LoginController.class);
-
     @Autowired
     private LoginService loginService;
 
@@ -35,7 +32,7 @@ public class LoginController {
             }
         }
 
-        LOG.info(StringUtil.combine("在", remoteAddr, "访问登陆主页"));
+        log.info(StringUtil.combine("在", remoteAddr, "访问登陆主页"));
         return "/views/login";
     }
 

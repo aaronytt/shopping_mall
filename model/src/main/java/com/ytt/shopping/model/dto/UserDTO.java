@@ -13,12 +13,9 @@ import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 @Data
-@EqualsAndHashCode
+@AllArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class UserDTO extends UserPO implements Serializable {
 
-    @Min(value = 18, message = "未满18岁禁止入内")
-    @Override
-    public void setAge(int age) {
-        super.setAge(age);
-    }
 }

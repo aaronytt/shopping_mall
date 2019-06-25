@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @CacheEvict(value = CACHE_NAME,key = CACHE_KEY)
     public UserDTO save(UserDTO user) {
-        Long id = userMapper.insert(user);
+        long id = userMapper.insert(user);
         user.setId(id);
         return user;
     }
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Cacheable(value = CACHE_NAME,key = CACHE_KEY + " + #user.toString()")
     @Override
     public UserDTO get(UserDTO user) {
-        UserPO userPO = userMapper.selectOne(user);
+        UserPO userPO = userMapper.selectSelective(user);
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userPO,userDTO);
         return userDTO ;
@@ -48,11 +48,11 @@ public class UserServiceImpl implements UserService {
 
     @Cacheable(value = CACHE_NAME,key = CACHE_KEY + " + #id")
     @Override
-    public UserDTO getById(Long id) {
+    public UserDTO getById(long id) {
         System.out.println("没有走缓存");
         UserDTO user = new UserDTO();
         user.setId(id);
-        UserPO userPO = userMapper.selectOne(user);
+        UserPO userPO = userMapper.selectSelective(user);
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(userPO,userDTO);
         return userDTO ;
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
     @CachePut(value = CACHE_NAME,key = CACHE_KEY + " + #user.getId()")
     @Override
-    public int update(UserDTO user) {
+    public long update(UserDTO user) {
         System.out.println(">>>>>>我在ytt刷脸了，好开心啊");
         /**
          * 待续
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
     //删除用户数据
     @CacheEvict(value = CACHE_NAME,key = CACHE_KEY + " +#id")//这是清除缓存
     @Override
-    public void delete(Long id){
+    public void delete(long id){
         System.out.println("清除缓存");
         return;
     }

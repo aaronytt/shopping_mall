@@ -14,13 +14,15 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface CityMapper {
+public interface CityMapper extends BaseMapper<CityPO, Integer> {
 
+    @Override
     @Insert("INSERT INTO city (name, state, country) VALUES(#{name}, #{state}, #{country})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void insert(CityPO city);
+    int insert(CityPO city);
 
+    @Override
     @Select("SELECT id, name, state, country FROM city WHERE id = #{id}")
-    CityPO findById(long id);
+    CityPO selectByPrimaryKey(Integer id);
 
 }

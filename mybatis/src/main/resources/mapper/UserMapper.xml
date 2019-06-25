@@ -20,7 +20,7 @@
     </sql>
 
     <sql id="user_allField">
-        id,<include refid="user_addField"/>,#{createTime},#{updateTime}
+        id,<include refid="user_addField"/>,create_time,update_time
     </sql>
 
     <sql id="user_allCondition">
@@ -50,7 +50,7 @@
             (<include refid="user_addParam"/>)
     </insert>
 
-    <select id="selectOne" resultMap="userMap" parameterType="java.lang.String" useCache="false">
+    <select id="selectSelective" resultMap="userMap" parameterType="java.lang.String" useCache="false">
         SELECT
           <include refid="user_allField"/>
         FROM
@@ -59,7 +59,4 @@
           <include refid="user_allCondition"/>
     </select>
 
-    <select id="selectAll" resultMap="userMap" useCache="false">
-        SELECT * FROM r_user
-    </select>
 </mapper>

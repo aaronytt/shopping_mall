@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'java'
 }
 
 apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
 
-group 'com.ytt'
+group 'com.ytt.shopping'
 version '1.0.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

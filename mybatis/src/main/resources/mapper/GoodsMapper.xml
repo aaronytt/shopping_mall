@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ytt.shopping.mybatis.mapper.GoodsMapper">
+
+    <resultMap id="goodsMap" type="com.ytt.shopping.model.po.GoodsPO">
+        <id column="id" jdbcType="BIGINT" property="id"  javaType="java.lang.Long"/>
+        <result column="name" jdbcType="VARCHAR" property="name" javaType="java.lang.String" />
+        <result column="price" jdbcType="DECIMAL" property="price" javaType="org.joda.money.Money"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" javaType="java.time.LocalDateTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" javaType="java.time.LocalDateTime"/>
+    </resultMap>
+
+    <sql id="goods_addField">
+        name,price
+    </sql>
+
+    <sql id="goods_addParam">
+        #{name},#{price}
+    </sql>
+
+    <sql id="goods_allField">
+        id,<include refid="goods_addField"/>,create_time,update_time
+    </sql>
+
+    <sql id="goods_allCondition">
+        <if test="id != null">
+            id = #{id}
+        </if>
+        <if test="name != null and name != ''">
+            AND name= #{name}
+        </if>
+        <if test="price != null">
+            AND price = #{price}
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="com.ytt.shopping.model.po.GoodsPO" keyProperty="id" useGeneratedKeys="true">
+        <!-- 插入返回插入记录的主键id
+        keyProperty		===>	映射到数据库的主键为当前pojo的哪个字段
+        resultType		===>	字段的类型
+        order			===>	排序，要插入后才知道id是多少，所以当然是AFTER（之后），触发是UUID就可以是BEFORE -->
+<!--        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">-->
+<!--          select last_insert_id()-->
+<!--        </selectKey>-->
+
+        INSERT goods
+            (<include refid="goods_addField"/>)
+          VALUES
+            (<include refid="goods_addParam"/>)
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="goodsMap" parameterType="com.ytt.shopping.model.po.GoodsPO" useCache="false">
+        SELECT
+            <include refid="goods_allField"/>
+        FROM
+            goods
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="selectSelective" resultMap="goodsMap" parameterType="com.ytt.shopping.model.po.GoodsPO" useCache="false">
+        SELECT
+          <include refid="goods_allField"/>
+        FROM
+            goods
+        WHERE
+          <include refid="goods_allCondition"/>
+    </select>
+
+</mapper>

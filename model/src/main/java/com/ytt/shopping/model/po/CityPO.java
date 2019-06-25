@@ -15,8 +15,9 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class CityPO extends BaseEntity implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class CityPO extends BaseEntity<Integer> implements Serializable {
 
     private String name;
 

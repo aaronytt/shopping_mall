@@ -1,13 +1,15 @@
 package com.ytt.shopping.web.config.mvc;
 
+import org.springframework.aop.interceptor.PerformanceMonitorInterceptor;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
+
+import java.util.TimeZone;
 
 /**
  * @Author: aaron
@@ -33,9 +35,23 @@ public class SpringMVCConfigurer implements WebMvcConfigurer {
      *
      * @param registry
      */
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+//    }
+
+
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/goods/**").addPathPatterns("/map/**").addPathPatterns("/user");
+    }
+
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer jacksonBuilderCustomizer(){
+        return builder -> {
+            builder.indentOutput(true);
+            builder.timeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+        };
     }
 
 }

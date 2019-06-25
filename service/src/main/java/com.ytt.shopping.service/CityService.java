@@ -1,6 +1,7 @@
 package com.ytt.shopping.service;
 
 import com.ytt.shopping.model.dto.CityDTO;
+import com.ytt.shopping.model.po.CityPO;
 
 /**
  * @Author: aaron
