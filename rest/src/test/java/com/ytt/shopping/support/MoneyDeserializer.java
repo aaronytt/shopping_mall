@@ -1,4 +1,4 @@
-package com.ytt.shopping.rest.support;
+package com.ytt.shopping.support;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

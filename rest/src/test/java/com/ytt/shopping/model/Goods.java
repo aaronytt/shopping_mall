@@ -1,4 +1,4 @@
-package com.ytt.shopping.rest;
+package com.ytt.shopping.model;
 
 import lombok.*;
 import org.joda.money.Money;
