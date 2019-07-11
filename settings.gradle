@@ -9,4 +9,5 @@ include 'redis'
 include 'mybatis'
 include 'service'
 include 'rest'
+include 'actuator-spring-boot-admin'
 

@@ -1,4 +1,4 @@
-package com.ytt.shopping.core.util;
+package com.ytt.shopping.core.util.test;
 
 import org.junit.Test;
 

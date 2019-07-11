@@ -1,0 +1,33 @@
+server:
+  port: 8081
+  tomcat:
+    url-encoding: utf-8
+
+spring:
+  application:
+    name: admin
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+        username: ccz
+        password: web-ccz
+        instance:
+          metadata:
+            user:
+              name: '${spring: security: user: name}'
+              password: '${spring: security: user: password}'
+  security:
+    user:
+      name: ccz
+      password: web-ccz
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+
+info:
+  demo:
+    name: Spring Boot Admin Client Demo

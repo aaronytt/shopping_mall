@@ -3,6 +3,7 @@ package com.ytt.shopping.web.controller;
 import com.ytt.shopping.core.util.StringUtil;
 import com.ytt.shopping.model.dto.UserDTO;
 import com.ytt.shopping.service.LoginService;
+import com.ytt.shopping.web.util.CusAccessObjectUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,18 +22,22 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @GetMapping("/to")
-    public String login(HttpServletRequest request, HttpServletResponse response){
-        String remoteAddr = "";
+    @GetMapping("/into")
+    public String loginInto(HttpServletRequest request, HttpServletResponse response){
+        log.info(StringUtil.combine("ip: ", StringUtil.combine(),
+                ", port: ", request.getRemotePort(),
+                ", host: ", request.getRemoteHost()),
+                "在主页登陆");
+        return "/views/login";
+    }
 
-        if (request != null) {
-            remoteAddr = request.getHeader("X-FORWARDED-FOR");
-            if (remoteAddr == null || "".equals(remoteAddr)) {
-                remoteAddr = request.getRemoteAddr();
-            }
-        }
-
-        log.info(StringUtil.combine("在", remoteAddr, "访问登陆主页"));
+    @RequestMapping("/out")
+    @ResponseBody
+    public String loginOut(HttpServletRequest request, HttpServletResponse response){
+        log.info(StringUtil.combine("ip: ", StringUtil.combine(),
+                ", port: ", request.getRemotePort(),
+                ", host: ", request.getRemoteHost()),
+                "在退出登陆");
         return "/views/login";
     }
 

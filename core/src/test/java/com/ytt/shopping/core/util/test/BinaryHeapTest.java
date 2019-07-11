@@ -1,5 +1,7 @@
-package com.ytt.shopping.core.util;
+package com.ytt.shopping.core.util.test;
 
+import com.ytt.shopping.core.util.ArrayUtil;
+import com.ytt.shopping.core.util.BinaryHeapUtil;
 import com.ytt.shopping.core.heap.BinaryHeap;
 import org.junit.Test;
 

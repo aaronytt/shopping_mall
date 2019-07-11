@@ -1,5 +1,6 @@
-package com.ytt.shopping.core.util;
+package com.ytt.shopping.core.util.test;
 
+import com.ytt.shopping.core.util.BinaryTreeUtil;
 import com.ytt.shopping.core.tree.BinaryTree;
 import org.assertj.core.util.Arrays;
 import org.junit.Test;
