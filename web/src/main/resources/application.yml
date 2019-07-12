@@ -9,6 +9,18 @@ logging:
 spring:
   application:
     name: shopping_mall_web
+  boot:
+    admin:
+      client:
+        url: http://localhost:8081
+        username: ccz
+        password: admin-server-ccz
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+
   datasource:
     name: zcc
     driver-class-name: 'com.mysql.cj.jdbc.Driver'
@@ -73,6 +85,7 @@ spring:
   #  management:
   #    security:
   #      enabled: false
+
   security:
     user:
       name: ccz
@@ -91,6 +104,19 @@ spring:
       prefix: '/resources/templates/'
       suffix: '.html'
     static-path-pattern: '/static/**'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  demo:
+    name: Spring Boot Admin Client Demo
 
 mybatis:
   #  typeAliasesPackage: com.ytt

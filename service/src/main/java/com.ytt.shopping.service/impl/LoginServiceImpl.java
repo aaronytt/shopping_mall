@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class LoginServiceImpl implements LoginService {
 
-    private final static Logger LOG = LoggerFactory.getLogger(LoginServiceImpl.class);
-
     @Autowired
     private UserService userService;
 
@@ -26,9 +24,9 @@ public class LoginServiceImpl implements LoginService {
         u.setPassword(password);
         UserDTO user = userService.get(u);
         if(user != null){
-            LOG.info(StringUtil.combine(">>>> * ", username ," * >>>>pass ytt"));
+            log.info(StringUtil.combine(">>>> * ", username ," * >>>>pass ytt"));
         }else {
-            LOG.info(StringUtil.combine(">>>> * ", username ," * >>>>password error"));
+            log.info(StringUtil.combine(">>>> * ", username ," * >>>>password error"));
         }
         return user;
     }

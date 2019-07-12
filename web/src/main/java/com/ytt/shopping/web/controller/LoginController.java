@@ -27,7 +27,7 @@ public class LoginController {
         log.info(StringUtil.combine("ip: ", StringUtil.combine(),
                 ", port: ", request.getRemotePort(),
                 ", host: ", request.getRemoteHost()),
-                "在主页登陆");
+                "在访问登陆主页");
         return "/views/login";
     }
 
@@ -37,7 +37,7 @@ public class LoginController {
         log.info(StringUtil.combine("ip: ", StringUtil.combine(),
                 ", port: ", request.getRemotePort(),
                 ", host: ", request.getRemoteHost()),
-                "在退出登陆");
+                "退出登陆成功");
         return "/views/login";
     }
 
@@ -46,7 +46,6 @@ public class LoginController {
     public UserDTO loginInto(@RequestParam("userid") String username,
                              @RequestParam("psw") String password){
         UserDTO user = loginService.login(username,password);
-
         return user;
     }
 
