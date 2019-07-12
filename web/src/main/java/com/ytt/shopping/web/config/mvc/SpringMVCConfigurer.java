@@ -26,7 +26,7 @@ public class SpringMVCConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/login/to");
+        registry.addViewController("/").setViewName("forward:/login/into");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
@@ -43,7 +43,7 @@ public class SpringMVCConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/goods/**").addPathPatterns("/map/**").addPathPatterns("/user");
+        registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/goods/**").addPathPatterns("/map/**").addPathPatterns("/user/**");
     }
 
     @Bean

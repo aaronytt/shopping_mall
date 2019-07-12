@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: admin
+    name: admin-client
   boot:
     admin:
       client:
@@ -15,8 +15,8 @@ spring:
         instance:
           metadata:
             user:
-              name: '${spring: security: user: name}'
-              password: '${spring: security: user: password}'
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
   security:
     user:
       name: ccz
@@ -26,7 +26,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: all
 
 info:
   demo:
