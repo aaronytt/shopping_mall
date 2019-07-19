@@ -2,6 +2,7 @@ package com.ytt.shopping.mybatis.mapper;
 
 import com.ytt.shopping.model.po.GoodsPO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @Author: aaron
@@ -12,4 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface GoodsMapper extends BaseMapper<GoodsPO, Long> {
 
+    @Select("SELECT count(0) FROM goods")
+    long getCount();
 }

@@ -1,4 +1,4 @@
-package com.ytt.shopping.web.config.mvc;
+package com.ytt.shopping.eureka.web.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Modiflid By:
  */
 @Slf4j
-public class PerformanceInterceptor implements HandlerInterceptor {
+public class PerformanceInteceptor implements HandlerInterceptor {
 
     private ThreadLocal<StopWatch> stopWatchThreadLocal = new ThreadLocal<>();
 

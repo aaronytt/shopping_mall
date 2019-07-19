@@ -2,6 +2,13 @@ server:
   port: 8080
   tomcat:
     url-encoding: utf-8
+  compression:
+    enabled: true
+    min-response-size: 512B
+  error:
+    include-stacktrace: always
+    include-exception: true
+
 
 logging:
   config: classpath:log4j2.yml
@@ -9,17 +16,17 @@ logging:
 spring:
   application:
     name: shopping_mall_web
-  boot:
-    admin:
-      client:
-        url: http://localhost:8081
-        username: ccz
-        password: admin-server-ccz
-        instance:
-          metadata:
-            user:
-              name: ${spring.security.user.name}
-              password: ${spring.security.user.password}
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8081
+#        username: ccz
+#        password: admin-server-ccz
+#        instance:
+#          metadata:
+#            user:
+#              name: ${spring.security.user.name}
+#              password: ${spring.security.user.password}
 
   datasource:
     name: zcc
@@ -105,18 +112,18 @@ spring:
       suffix: '.html'
     static-path-pattern: '/static/**'
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
-
-info:
-  demo:
-    name: Spring Boot Admin Client Demo
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: always
+#
+#info:
+#  demo:
+#    name: Spring Boot Admin Client Demo
 
 mybatis:
   #  typeAliasesPackage: com.ytt

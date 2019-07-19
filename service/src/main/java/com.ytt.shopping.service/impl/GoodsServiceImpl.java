@@ -53,4 +53,8 @@ public class GoodsServiceImpl implements GoodsService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public long getGoodsCount() {
+        return goodsMapper.getCount();
+    }
 }

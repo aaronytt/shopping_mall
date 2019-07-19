@@ -10,4 +10,7 @@ include 'mybatis'
 include 'service'
 include 'rest'
 include 'actuator-spring-boot-admin'
+include 'https-ssl'
+include 'eureka-server'
+include 'eureka-web-service'
 

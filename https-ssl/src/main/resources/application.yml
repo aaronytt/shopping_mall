@@ -1,0 +1,142 @@
+server:
+#  8443被占用
+  port: 8080
+  tomcat:
+    url-encoding: utf-8
+  compression:
+    enabled: true
+    min-response-size: 512B
+  error:
+    include-stacktrace: always
+    include-exception: true
+  http2:
+    enabled: true
+  ssl:
+    key-store: classpath:shoppingmall.p12
+    key-store-type: PKCS12
+    key-store-password: 123456
+
+logging:
+  config: classpath:log4j2.yml
+
+spring:
+  application:
+    name: shopping-mall-https-ssl
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8081
+#        username: ccz
+#        password: admin-server-ccz
+#        instance:
+#          metadata:
+#            user:
+#              name: ${spring.security.user.name}
+#              password: ${spring.security.user.password}
+
+  datasource:
+    name: zcc
+    driver-class-name: 'com.mysql.cj.jdbc.Driver'
+    url: 'jdbc:mysql://localhost:3306/zcc?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&'
+    username: 'root'
+    password: '123456'
+    # 使用hikari数据源
+    type: 'com.zaxxer.hikari.HikariDataSource'
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: 'DatebookHikariCP'
+      max-lifetime: 1800000
+      connection-timeout: 60000
+      connection-test-query: 'SELECT 1'
+  #  jpa:
+  #    show-sql: true
+  #    properties:
+  #      jadira:
+  #        usertype:
+  #          autoRegisterUserTypes: true
+  #    hibernate:
+  #      ddl-auto: update
+  #      generator-ddl: true
+  #      open-in-view: true
+
+  #redis配置开始
+  # Redis数据库索引（默认为0）
+  redis:
+    database: 0
+    # Redis服务器地址
+    host: localhost
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password: 123456
+    # 连接池最大连接数（使用负值表示没有限制）
+    #    jedispool:
+    #      max-active: 1024
+    #  # 连接池最大阻塞等待时间（使用负值表示没有限制）
+    #      max-wait: 10000
+    #  # 连接池中的最大空闲连接
+    #      max-idle: 200
+    #  # 连接池中的最小空闲连接
+    #      min-idle: 0
+    # 连接超时时间（毫秒）
+    timeout: 10000
+    #redis配置结束
+    block-when-exhausted: true
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 10000
+      cache-null-values: false
+
+  #  security:
+  #    basic:
+  #      enabled: false
+  #  management:
+  #    security:
+  #      enabled: false
+
+#  security:
+#    user:
+#      name: ccz
+#      password: web-ccz
+
+  resources:
+    static-locations: 'classpath:/static/'
+    cache:
+      cachecontrol:
+        max-age: 10s
+  #        no-cache: false
+  #        s-max-age: 20
+
+  mvc:
+    view:
+      prefix: '/resources/templates/'
+      suffix: '.html'
+    static-path-pattern: '/static/**'
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: always
+#  security:
+#    enabled: false
+#
+#info:
+#  demo:
+#    name: Spring Boot Admin Client Demo
+
+mybatis:
+  #  typeAliasesPackage: com.ytt
+  mapper-locations: 'classpath*:mapper/*.xml'
+  type-handlers-package: 'com.ytt.shopping.mybatis.handlers'
+  configuration:
+    log-impl: 'org.apache.ibatis.logging.stdout.StdOutImpl'
+

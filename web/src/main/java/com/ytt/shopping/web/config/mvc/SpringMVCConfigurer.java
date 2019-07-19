@@ -1,13 +1,10 @@
 package com.ytt.shopping.web.config.mvc;
 
-import org.springframework.aop.interceptor.PerformanceMonitorInterceptor;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
-import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
 
 import java.util.TimeZone;
 
@@ -43,7 +40,7 @@ public class SpringMVCConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new PerformanceInterceptor()).addPathPatterns("/goods/**").addPathPatterns("/map/**").addPathPatterns("/user/**");
+        registry.addInterceptor(new PerformanceInteceptor()).addPathPatterns("/goods/**").addPathPatterns("/map/**").addPathPatterns("/user/**");
     }
 
     @Bean

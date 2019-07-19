@@ -1,0 +1,16 @@
+server:
+  port: 8761
+  tomcat:
+    url-encoding: utf-8
+
+logging:
+  config: classpath:log4j2.yml
+
+spring:
+  application:
+    name: eureka
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

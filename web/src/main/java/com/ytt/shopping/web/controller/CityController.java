@@ -26,7 +26,6 @@ public class CityController {
     @ResponseBody
     @RequestMapping(value = "/getCity", method = RequestMethod.GET)
     public CityDTO getCity(CityDTO city){
-        city.setId(1);
         CityDTO rc = cityService.getCity(city);
         return rc;
     }

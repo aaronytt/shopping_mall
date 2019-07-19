@@ -17,4 +17,6 @@ public interface GoodsService {
     GoodsDTO getById(long id);
 
     List<GoodsDTO> getList(GoodsDTO goods);
+
+    long getGoodsCount();
 }
