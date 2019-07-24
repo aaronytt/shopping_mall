@@ -48,9 +48,9 @@ subprojects {
         compileOnly(
                 'org.projectlombok:lombok'
         )
-        runtimeOnly(
-                'org.springframework.boot:spring-boot-devtools'
-        )
+//        runtimeOnly(
+//                'org.springframework.boot:spring-boot-devtools'
+//        )
         annotationProcessor(
                 'org.springframework.boot:spring-boot-configuration-processor',
                 'org.projectlombok:lombok'
@@ -263,5 +263,14 @@ project(':eureka-web-service') {
 
         // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies
         compile group: 'org.springframework.cloud', name: 'spring-cloud-dependencies', version: 'Greenwich.RELEASE', ext: 'pom'
+    }
+}
+
+//定义子项目service的配置
+project(':spring-code') {
+    dependencies {
+        compile(
+                project(":core")
+        )
     }
 }

@@ -1,0 +1,10 @@
+生成证书⽂文件
+  命令
+      • keytool -genkey -alias 别名   -storetype 仓库类型 -keyalg 算法 -keysize ⻓长度   -keystore ⽂文件名 -validity 有效期
+  说明
+      • 仓库类型，JKS、JCEKS、PKCS12 等
+      • 算法，RSA、DSA 等
+      • ⻓长度，例例如 2048
+  例如
+      • keytool -genkey -alias shoppingmall -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore shoppingmal
+  l.p12 -validity 365

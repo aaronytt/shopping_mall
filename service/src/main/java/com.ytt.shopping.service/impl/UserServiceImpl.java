@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //删除用户数据
-    @CacheEvict(value = CACHE_NAME,key = CACHE_KEY + " +#id")//这是清除缓存
+    @CacheEvict(value = CACHE_NAME,key = CACHE_KEY + " + #id")//这是清除缓存
     @Override
     public void delete(long id){
         System.out.println("清除缓存");
