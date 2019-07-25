@@ -28,7 +28,7 @@ import java.util.Optional;
 @Slf4j
 public class UserHttpAspect {
 
-    @Pointcut("execution( public * com.ytt.shopping.web.controller.UserController.*(..))")
+    @Pointcut("execution(public * com.ytt.shopping.web.controller.UserController.*(..))")
     public void log(){
 
     }

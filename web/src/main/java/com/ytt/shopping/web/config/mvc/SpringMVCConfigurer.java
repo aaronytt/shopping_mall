@@ -40,7 +40,10 @@ public class SpringMVCConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new PerformanceInteceptor()).addPathPatterns("/goods/**").addPathPatterns("/map/**").addPathPatterns("/user/**");
+        registry.addInterceptor(new PerformanceInteceptor())
+                .addPathPatterns("/goods/**")
+                .addPathPatterns("/map/**")
+                .addPathPatterns("/user/**");
     }
 
     @Bean
