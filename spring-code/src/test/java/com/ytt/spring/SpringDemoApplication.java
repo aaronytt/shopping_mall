@@ -1,4 +1,4 @@
-package com.ytt.spring.context.annotation;
+package com.ytt.spring;
 
 import com.ytt.spring.context.annotation.model.Bird;
 import org.springframework.beans.BeansException;
@@ -8,9 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-
-import javax.annotation.Resource;
 
 /**
  * @Author: aaron
@@ -67,7 +64,6 @@ public class SpringDemoApplication implements ApplicationContextAware {
 
         System.out.println(BIRD);
 //       - test - end
-
     }
 
     @Override
