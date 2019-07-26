@@ -102,7 +102,7 @@ public class CarAspectClass {
      * 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
      * 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
      * 	at com.ytt.spring.aop.model.Car$$EnhancerBySpringCGLIB$$195ecf9.drive(<generated>)
-     * 	at com.ytt.spring.SpringAopDemoApplication.main(SpringAopDemoApplication.java:29)
+     * 	at com.ytt.spring.aop.SpringAopDemoApplication.main(SpringTransactionDemoApplication.java:29)
      */
 
 }

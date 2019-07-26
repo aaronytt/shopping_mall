@@ -260,7 +260,6 @@ project(':eureka-web-service') {
                 "javax.activation:activation:1.1.1",
         )
 
-
         // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies
         compile group: 'org.springframework.cloud', name: 'spring-cloud-dependencies', version: 'Greenwich.RELEASE', ext: 'pom'
     }
@@ -270,7 +269,9 @@ project(':eureka-web-service') {
 project(':spring-code') {
     dependencies {
         compile(
-                project(":core")
+                //                project(":jpa"),
+                project(':mybatis'),
+                project(':redis'),
         )
     }
 }

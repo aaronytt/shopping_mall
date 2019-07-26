@@ -15,4 +15,5 @@ public interface GoodsMapper extends BaseMapper<GoodsPO, Long> {
 
     @Select("SELECT count(0) FROM goods")
     long getCount();
+
 }

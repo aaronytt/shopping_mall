@@ -1,9 +1,8 @@
-package com.ytt.spring;
+package com.ytt.spring.aop;
 
 import com.ytt.spring.aop.model.Car;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;

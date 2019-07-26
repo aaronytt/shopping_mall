@@ -1,4 +1,4 @@
-package com.ytt.spring;
+package com.ytt.spring.context.annotation;
 
 import com.ytt.spring.context.annotation.model.Bird;
 import org.springframework.beans.BeansException;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @SpringBootApplication
 @PropertySource(value = "classpath:My.properties")
-public class SpringDemoApplication implements ApplicationContextAware {
+public class SpringContextDemoApplication implements ApplicationContextAware {
     /**
      * Autowired按照类型注入，可以注入空
      *
@@ -35,7 +35,7 @@ public class SpringDemoApplication implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringDemoApplication.class);
+        SpringApplication.run(SpringContextDemoApplication.class);
 
         System.out.println("IOC容器创建完成...");
 
@@ -68,8 +68,8 @@ public class SpringDemoApplication implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if(SpringDemoApplication.applicationContext == null) {
-            SpringDemoApplication.applicationContext = applicationContext;
+        if(SpringContextDemoApplication.applicationContext == null) {
+            SpringContextDemoApplication.applicationContext = applicationContext;
         }
     }
 }
