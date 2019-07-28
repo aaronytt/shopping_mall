@@ -11,7 +11,7 @@ allprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
-    group = 'com.ytt.shopping'
+    group = 'com.ytt'
     version = '1.0.0-SNAPSHOT'
     //jvm(java虚拟机版本号)第一个是你项目使用的jdk版本 第二个是你项目运行的jdk版本
     sourceCompatibility = 11
@@ -265,13 +265,3 @@ project(':eureka-web-service') {
     }
 }
 
-//定义子项目service的配置
-project(':spring-code') {
-    dependencies {
-        compile(
-                //                project(":jpa"),
-                project(':mybatis'),
-                project(':redis'),
-        )
-    }
-}

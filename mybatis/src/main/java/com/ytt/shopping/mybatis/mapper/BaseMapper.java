@@ -3,7 +3,7 @@ package com.ytt.shopping.mybatis.mapper;
 import java.io.Serializable;
 import java.util.List;
 
-public interface BaseMapper<T,ID extends Serializable> {
+public interface BaseMapper<T extends Serializable,ID extends Serializable> {
 
     int insert(T record);
 
